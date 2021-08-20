@@ -1,0 +1,21 @@
+
+galaxy_info:
+  author:       Larry Dolinar
+  description:  something useful
+  company:      as if...
+
+  license:      GPL-2.0
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 20.04
+
+  galaxy_tags:
+    - adduser
+    - keypair
+
+dependencies: []
+

@@ -1,0 +1,10 @@
+---
+#TODO: default algorithm, bits here as well...
+key_type: rsa
+key_bits: 4096
+key_file: .ssh/id_rsa
+key_passphrase:
+keypair_files:
+- id_rsa.pub
+- id_rsa
+

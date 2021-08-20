@@ -1,0 +1,29 @@
+---
+# must be invoked *after* installing any package that auto-adds its executing user
+- name: create user keypair
+  ansible.builtin.user:
+    name: "{{ target_user }}"
+    state: present
+    force: no
+    generate_ssh_key: yes
+    ssh_key_type: "{{ key_type }}"
+    ssh_key_bits: "{{ key_bits }}"
+    ssh_key_file: "{{ key_file }}"
+    ssh_key_passphrase: "{{ key_passphrase }}"
+    # experiment with empty passphrase, noting results (no private key password or nothing at all?
+  when: ssh_key_pass is defined
+  # as mentioned in https://stackoverflow.com/questions/33343215/
+  register: target_user_info
+  tags:
+    - adduser
+
+- name: retrieve for later use
+  ansible.builtin.fetch:
+    src: "{{ target_user_info.home }}/.ssh/{{ item }}"
+    dest: "roles/make_keypair/files/{{ inventory_hostname_short }}/ssh/{{ item }}"
+    flat: yes
+  loop: "{{ keypair_files }}"
+  tags:
+    - keypair
+
+#TODO: determine reasonable condition to make retrieval optional; may need to split/import instead
