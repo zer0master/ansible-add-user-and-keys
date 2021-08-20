@@ -11,7 +11,7 @@
     ssh_key_file: "{{ key_file }}"
     ssh_key_passphrase: "{{ key_passphrase }}"
     # experiment with empty passphrase, noting results (no private key password or nothing at all?
-  when: ssh_key_pass is defined
+# when: ssh_key_pass is defined
   # as mentioned in https://stackoverflow.com/questions/33343215/
   register: target_user_info
   tags:
